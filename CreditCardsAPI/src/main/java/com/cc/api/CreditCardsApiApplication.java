@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CreditCardsApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CreditCardsApiApplication.class, args);
-		System.out.println("Verify");
+		SpringApplication.run(CreditCardsApiApplication.class, args);		
 	}
 
 }
