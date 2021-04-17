@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cc.exceptions.InvalidCCNumberException;
 import com.cc.model.CreditCard;
 import com.cc.repo.CreditCardRepository;
 import com.cc.utils.ProjectUtils;
@@ -46,7 +47,7 @@ public class CreditCardController {
 			return card;
 		}
 		else
-			throw new RuntimeException("Invalid credit card number");
+			throw new InvalidCCNumberException("Invalid credit card number");
 		//Send error response
 		//return card;
 		
