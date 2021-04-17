@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cc.exceptions.InvalidCCNumberException;
+import com.cc.exceptions.RequestFormatException;
 import com.cc.model.ApiError;
 
 /**
@@ -21,7 +22,7 @@ import com.cc.model.ApiError;
 public class ExceptionController {
 	private static Logger log = LoggerFactory.getLogger(ExceptionController.class);
 
-	@ExceptionHandler(value = InvalidCCNumberException.class)
+	@ExceptionHandler(value = RequestFormatException.class)
 	public ResponseEntity<ApiError> exception(InvalidCCNumberException exception) {
 		log.error("Error occurred :" + exception.getErrorMsg());
 		ApiError error = new ApiError(HttpStatus.BAD_REQUEST, "invalid input", exception.getErrorMsg());

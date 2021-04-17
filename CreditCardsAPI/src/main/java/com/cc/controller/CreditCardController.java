@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cc.exceptions.InvalidCCNumberException;
+import com.cc.exceptions.RequestFormatException;
 import com.cc.model.CreditCard;
 import com.cc.repo.CreditCardRepository;
 import com.cc.utils.ProjectUtils;
@@ -43,13 +44,14 @@ public class CreditCardController {
 		log.debug("POST received "+card.toString());
 		if(ProjectUtils.validateCardNumber(card.getNumber())) {
 			card.setBalance(0.0);
+			try {
 			ccRepos.save(card);
+			}catch (Exception e) {
+				throw new RequestFormatException(e.getLocalizedMessage());
+			}
 			return card;
 		}
 		else
 			throw new InvalidCCNumberException("Invalid credit card number");
-		//Send error response
-		//return card;
-		
 	}
 }

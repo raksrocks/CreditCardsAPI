@@ -15,7 +15,10 @@
 	<description>Project for PublicisSapient Interview Process</description>
 	<properties>
 		<java.version>11</java.version>
+		<groovy.version>3.0.7</groovy.version>
+       <rest-assured.version>4.3.3</rest-assured.version>
 	</properties>
+	
 	<dependencies>
 		
 
@@ -41,6 +44,63 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>6.8.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>6.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.3.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+		<dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured-common</artifactId>
+                <version>4.3.3</version>
+            </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>json-path</artifactId>
+                <version>4.3.3</version>
+            </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>xml-path</artifactId>
+                <version>4.3.3</version>
+            </dependency>
+	<dependency>
+           <groupId>org.codehaus.groovy</groupId>
+           <artifactId>groovy</artifactId>
+           <version>${groovy.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.codehaus.groovy</groupId>
+           <artifactId>groovy-xml</artifactId>
+           <version>${groovy.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.codehaus.groovy</groupId>
+           <artifactId>groovy-json</artifactId>
+           <version>${groovy.version}</version>
+       </dependency>
 	</dependencies>
 
 	<build>
@@ -48,6 +108,20 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					<includes>
+						<include>**/Test*.java</include>
+						<include>**/*Test.java</include>
+						<include>**/*Tests.java</include>
+						<include>**/*TestCase.java</include>
+					</includes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
