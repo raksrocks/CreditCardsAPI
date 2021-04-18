@@ -38,22 +38,35 @@ public class CreditCardController {
 	@GetMapping("getAll")
 	public ResponseEntity<List<CreditCard>> getAll(){
 		log.debug("GET received ");
-		return new ResponseEntity<List<CreditCard>>(this.ccRepos.findAll(),HttpStatus.OK);		
+		try {
+			return new ResponseEntity<List<CreditCard>>(this.ccRepos.findAll(),HttpStatus.OK);
+		}catch (Exception e) {
+			log.error("Error occurred in /getAll "+ e.getLocalizedMessage());
+			throw new RuntimeException(e.getLocalizedMessage());
+		}
 	}
 	
 	@PostMapping(path="add", consumes = {"application/json"})
 	public ResponseEntity<CreditCard>  addCreditCard(@RequestBody CreditCard card) {
 		log.debug("POST received "+card.toString());
-		if(ProjectUtils.validateCardNumber(card.getNumber())) {
-			card.setBalance(0.0);
-			try {
+		
+		try {
+			//Validate the input
+			ProjectUtils.validateInput(card);
 			ccRepos.save(card);
-			}catch (Exception e) {
-				throw new RequestFormatException(e.getLocalizedMessage());
-			}
-			return new ResponseEntity<CreditCard>(card,HttpStatus.CREATED);
+			
+			log.debug("entity created "+card.toString());
+		}catch (InvalidCCNumberException e) {
+			log.error("InvalidCCNumberException error occurred while processing POST request in /add "+e.getLocalizedMessage());
+			throw e;
+		}catch (RequestFormatException e) {
+			log.error("RequestFormatException error occurred while processing POST request in /add "+e.getLocalizedMessage());
+			throw e;
+		}catch (Exception e) {
+			log.error("Unexpected error occurred while processing POST request in /add "+e.getLocalizedMessage());
+			throw e;
 		}
-		else
-			throw new InvalidCCNumberException("Invalid credit card number");
+		
+		return new ResponseEntity<CreditCard>(card,HttpStatus.CREATED);		
 	}
 }

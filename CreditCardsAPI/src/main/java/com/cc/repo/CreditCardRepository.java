@@ -8,4 +8,6 @@ import com.cc.model.CreditCard;
 @Repository
 public interface CreditCardRepository extends JpaRepository<CreditCard, Long> {
 
+	CreditCard findByName(String string);
+
 }

@@ -28,6 +28,9 @@ public class CreditCardsApiApplication  implements CommandLineRunner
 	private CreditCardRepository ccRepo;
 
 	
+	/**
+	 *  For standalone testing and initializing data base with below pre created cards
+	 */
 	@Override 
 	public void run(String... args) throws Exception {
 		
