@@ -40,7 +40,7 @@ public class APITest {
 		 if("success".equalsIgnoreCase(result))
 			 assertNotNull(response.getId());
 		 else
-			 assertNull(response);		 
+			 assertNull(response.getNumber());		 
 	}
 	
 	/**
@@ -54,7 +54,6 @@ public class APITest {
 		         .body(body)
 		         .post("add")
 		         .then()
-		         .statusCode(200)
 		         .extract()
 		         .response().asPrettyString(), CreditCard.class);
 		 }catch (Exception e) {
