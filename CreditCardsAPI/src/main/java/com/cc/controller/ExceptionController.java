@@ -16,12 +16,19 @@ import com.cc.model.ApiError;
 
 /**
  * @author Administrator
+ * 
+ * This exception controller is used to format the error response 
+ * and customize the https codes based on the response 
  *
  */
 @ControllerAdvice
 public class ExceptionController {
 	private static Logger log = LoggerFactory.getLogger(ExceptionController.class);
 
+	/**
+	 * @param exception
+	 * @return
+	 */
 	@ExceptionHandler(value = InvalidCCNumberException.class)
 	public ResponseEntity<ApiError> exception(InvalidCCNumberException exception) {
 		log.error("Error occurred :" + exception.getErrorMsg());
@@ -29,6 +36,10 @@ public class ExceptionController {
 		return new ResponseEntity<ApiError>(error, HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * @param exception
+	 * @return
+	 */
 	@ExceptionHandler(value = RequestFormatException.class)
 	public ResponseEntity<ApiError> exception(RequestFormatException exception) {
 		log.error("Error occurred :" + exception.getErrorMsg());
@@ -36,6 +47,10 @@ public class ExceptionController {
 		return new ResponseEntity<ApiError>(error, HttpStatus.BAD_REQUEST);
 	}
 	
+	/**
+	 * @param exception
+	 * @return
+	 */
 	@ExceptionHandler(value = Exception.class)
 	public ResponseEntity<ApiError> exception(Exception exception) {
 		log.error("Error occurred :" + exception.getLocalizedMessage());

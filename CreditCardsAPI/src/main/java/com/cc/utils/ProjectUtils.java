@@ -11,7 +11,7 @@ import com.cc.model.CreditCard;
 
 /**
  * @author Administrator
- *
+ * Utility class that holds the methods, can be used across the project
  */
 public class ProjectUtils {
 	/**
@@ -50,25 +50,6 @@ public class ProjectUtils {
 		//validate checksum
 		return sum % 10 == 0;
 		
-	}
-
-	/**
-	 * @param card
-	 * @return
-	 */
-	public static boolean isValidInput(CreditCard card) {
-		
-		//Validate Name
-		if(null==card.getName()||card.getName().trim().isEmpty())
-			return false;
-		//validate Number
-		//if(null==card.getNumber()||card.getNumber().isEmpty()||card.getNumber().get)
-			//return false;		
-		//Validate Limit
-				
-		//Validate Balance
-		
-		return false;
 	}
 
 	/**

@@ -24,6 +24,13 @@ import com.cc.utils.ProjectUtils;
 
 /**
  * @author Administrator
+ * 
+ * This Controller exposes 2 end points
+ * <b>End point</b> : /creditcards/
+ * <b>GET</b>: /getAll : returns all the credit cards available 
+ * <b>POST</b>: /add : creates a credit card when passed valid input
+ * 
+ * Uses In Memory H2 DB to store the data
  *
  */
 @RestController
@@ -35,6 +42,12 @@ public class CreditCardController {
 	@Autowired
 	private CreditCardRepository ccRepos;
 	
+	/**
+	 * @return 
+	 * 
+	 * returns a List object with all the credit cards in the DB
+	 * ToDo: implement pagination to return chunks of cards than whole set
+	 */
 	@GetMapping("getAll")
 	public ResponseEntity<List<CreditCard>> getAll(){
 		log.debug("GET received ");
@@ -46,13 +59,29 @@ public class CreditCardController {
 		}
 	}
 	
+	/**
+	 * @param card
+	 * @return
+	 * 
+	 * Accepts Creditcard in request body.
+	 * Name
+	 * Number
+	 * Limit
+	 * Balance
+	 * 
+	 * throws InvalidCCNumberException
+	 * throws RequestFormatException
+	 * throws Exception
+	 */
 	@PostMapping(path="add", consumes = {"application/json"})
 	public ResponseEntity<CreditCard>  addCreditCard(@RequestBody CreditCard card) {
 		log.debug("POST received "+card.toString());
 		
 		try {
-			//Validate the input
+			//Validate the input 
 			ProjectUtils.validateInput(card);
+			
+			//persist the data to DB
 			ccRepos.save(card);
 			
 			log.debug("entity created "+card.toString());

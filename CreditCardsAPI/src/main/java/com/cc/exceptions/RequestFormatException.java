@@ -5,7 +5,7 @@ package com.cc.exceptions;
 
 /**
  * @author Administrator
- *
+ * This exception is thrown when any input is not as expected
  */
 public class RequestFormatException extends RuntimeException{
 	/**
