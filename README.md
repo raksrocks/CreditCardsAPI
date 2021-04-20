@@ -1,7 +1,7 @@
 # CreditCardsAPI
 API for processing credit cards | Publicis Sapient Coding test
 
-Available as Docker image: Refer Dockerfile or run /mvnw.cmd spring-boot:build-image
+Available as Docker image: Refer Dockerfile or run /mvnw.cmd spring-boot:build-image <br />
 Available on AWS at: http://creditcardsapi-env.eba-pvyjfhpb.eu-west-2.elasticbeanstalk.com/creditcards/
 
 Two REST Endpoints are implemented
