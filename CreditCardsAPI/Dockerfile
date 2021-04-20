@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
-MAINTAINER Rakesh Singarapu
-COPY target/CreditCardsAPI-0.0.1-SNAPSHOT.jar CreditCards-v1.jar
-ENTRYPOINT ["java","-jar","/CreditCards-v1.jar"]
+EXPOSE 8080
+COPY target/creditcards-api-0.0.1-SNAPSHOT.jar creditcards-api.jar
+ENTRYPOINT ["java","-jar","/creditcards-api.jar"]
