@@ -1,5 +1,5 @@
 # CreditCardsAPI
-API for processing credit cards | Publicis Sapient Coding test
+API for processing credit cards | 
 
 Available as Docker image: Refer Dockerfile or run /mvnw.cmd spring-boot:build-image <br />
 Available on AWS at: http://creditcardsapi-env.eba-pvyjfhpb.eu-west-2.elasticbeanstalk.com/creditcards/
